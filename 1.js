@@ -3,14 +3,20 @@ const text_1 = `this THIS ThiS  test of function  and but should is best perform
 
 function findRepetition(text) {
   // first should convert text to array of string and separate by space and new line enter
-  const words = text.split(/\s+/);
+  let words = text.split(/\s+/);
 
   // convert all the words to lower case
-  const lowerCaseWords = words.map((word) => word.toLowerCase());
+  // just hold a-z A-Z and '
+  const lowerCaseWords = words.map((w) => {
+    return w.toLowerCase().replace(/[^a-zA-Z\s']/g, "");
+  });
+
+  //remove all empty string
+  const filterWords = lowerCaseWords.filter((w) => w.trim() !== "");
 
   // {foo:1,bar:3}
   const wordAndCount = {};
-  for (const word of lowerCaseWords) {
+  for (const word of filterWords) {
     // loop to all the words and check if it's new should create new field in object and if before we have field with this name increase count number of that field
     if (wordAndCount[word]) {
       wordAndCount[word] += 1;
@@ -27,8 +33,8 @@ function findRepetition(text) {
   });
   // seprate 3 item of array and just return word without count
   const mostRepetitionsWords = wordAndCountArray.slice(0, 3).map((i) => i[0]);
-  console.log(mostRepetitionsWords);
+  return mostRepetitionsWords;
 }
 
-findRepetition(text_1);
+console.log(findRepetition(text_1));
 // return  [ 'developer', 'this', 'test' ]
