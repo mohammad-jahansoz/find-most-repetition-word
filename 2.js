@@ -1,17 +1,18 @@
-const text_1 = "   //wont won't won't ";
+const text_1 = "   //wont won't won't";
 
 function findRepetition(text) {
   // first should convert text to array of string and separate by space and new line enter
   const words = text.split(/\s+/);
 
-  // convert all the words to lower case
-  // just hold a-z A-Z and '
-  const lowerCaseWords = words.map((w) => {
-    return w.toLowerCase().replace(/[^a-zA-Z\s']/g, "");
-  });
+  const filterWords = [];
 
-  //remove all empty string
-  const filterWords = lowerCaseWords.filter((w) => w.trim() !== "");
+  for (const word of words) {
+    // remove all empty string
+    if (word.trim() !== "") {
+      // convert all the words to lower case & just hold a-z A-Z and '
+      filterWords.push(word.toLowerCase().replace(/[^a-zA-Z\s']/g, ""));
+    }
+  }
 
   // {foo:1,bar:3}
   const wordAndCount = {};
