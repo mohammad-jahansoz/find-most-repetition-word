@@ -9,8 +9,8 @@ function findRepetition(text) {
   for (const word of words) {
     // remove all empty string
     if (word.trim() !== "") {
-      // convert all the words to lower case & just hold a-z A-Z and '
-      filterWords.push(word.toLowerCase().replace(/[^a-zA-Z\s']/g, ""));
+      // convert all the words to lower case & just hold a-z and '
+      filterWords.push(word.toLowerCase().replace(/[^a-z\s']/g, ""));
     }
   }
 
